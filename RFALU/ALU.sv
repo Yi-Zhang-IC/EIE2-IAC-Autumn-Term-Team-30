@@ -1,4 +1,4 @@
-module ALU #(
+module ALU #
 (
     input logic [31:0] ALUop1, ALUop2, 
     input logic [2:0] ALUcntrl,
@@ -10,7 +10,6 @@ module ALU #(
         EQ = 0;
         ALUout = 0;
         case (ALUcntrl)
-
             3'b000: ALUout = ALUop1 + ALUop2;
             3'b001: ALUout = ALUop1 - ALUop2;
             3'b010: ALUout = ALUop1 & ALUop2;

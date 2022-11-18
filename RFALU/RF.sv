@@ -1,4 +1,5 @@
-module RF #(
+module RF #
+(
 input logic [4:0] ad1, ad2, ad3,
 input logic regwrite, clk, rst, 
 input logic [31:0] wd3,
