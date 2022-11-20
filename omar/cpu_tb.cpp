@@ -4,8 +4,8 @@
 #include <iostream>
 #include <iomanip>
 
-#include "vbuddy.cpp"     // include vbuddy code
-#define MAX_SIM_CYC 100000
+// #include "vbuddy.cpp"     // include vbuddy code
+// #define MAX_SIM_CYC 100000
 
 int main(int argc, char **argv, char **env) {
   int simcyc;     // simulation clock count
@@ -24,9 +24,9 @@ int main(int argc, char **argv, char **env) {
   tfp->open ("cpu.vcd");
 
   // init Vbuddy
-  if (vbdOpen()!=1) return(-1);
-  vbdHeader("L3T2:kos");
-  vbdSetMode(0);
+  // if (vbdOpen()!=1) return(-1);
+  // vbdHeader("L3T2:kos");
+  // vbdSetMode(0);
 
 
   // initialize simulation inputs
@@ -36,17 +36,17 @@ int main(int argc, char **argv, char **env) {
 
   for (simcyc = 0; simcyc < MAX_SIM_CYC; simcyc++) {
 
-    for (tick=0; tick<2 && vbdFlag(); tick++) {
+    for (tick=0; tick<2; tick++) {
       tfp->dump (2*simcyc+tick);
       cpu->clk = !cpu->clk;
       cpu->eval ();
     }
 
-    vbdCycle(simcyc);
+    // vbdCycle(simcyc);
 
-    vbdHex(1, int(cpu->a0_output) & 0xf);
-    vbdHex(2, int(cpu->a0_output) >> 4 & 0xf);
-    vbdHex(3, int(cpu->a0_output) >> 8 & 0xf);
+    // vbdHex(1, int(cpu->a0_output) & 0xf);
+    // vbdHex(2, int(cpu->a0_output) >> 4 & 0xf);
+    // vbdHex(3, int(cpu->a0_output) >> 8 & 0xf);
 
     // // checks immop, requires vbdsetmode(0)
     //  if (vbdFlag()){
@@ -58,23 +58,23 @@ int main(int argc, char **argv, char **env) {
     
     // //checks instruction word, requires vbdsetmode(0)
     
-    // if (vbdFlag()){
-    //   std::stringstream stream;
-    //   stream << std::hex << cpu->rf_dout1;
-    //   std::string result( stream.str());
-    //   // std::cout << result << std::endl;
+    if (1){
+      std::stringstream stream;
+      stream << std::hex << cpu->rf_dout1;
+      std::string result( stream.str());
+      // std::cout << result << std::endl;
 
-    //   std::stringstream st;
-    //   st << std::hex << cpu->aluop2_test;
-    //   std::string res = st.str();
+      std::stringstream st;
+      st << std::hex << cpu->aluop2_test;
+      std::string res = st.str();
 
-    //   std::stringstream s;
-    //   s << std::hex << cpu->interm_ins;
-    //   std::string r = s.str();
+      std::stringstream s;
+      s << std::hex << cpu->interm_ins;
+      std::string r = s.str();
 
-    //   std::cout << "insttr: " << r << "\t rs1: " << result <<  "\t rs/imm: " << res << std::endl;
+      std::cout << "insttr: " << r << "\t rs1: " << result <<  "\t rs/op: " << res << std::endl;
 
-    // }
+    }
 
     // //tests program counter
     // vbdHex(2, (int(cpu->prog_addr) >> 4) & 0xF);
@@ -85,7 +85,7 @@ int main(int argc, char **argv, char **env) {
     if (Verilated::gotFinish())  exit(0);
 
   }
-    vbdClose();
+    // vbdClose();
     tfp->close(); 
     exit(0);
 }
