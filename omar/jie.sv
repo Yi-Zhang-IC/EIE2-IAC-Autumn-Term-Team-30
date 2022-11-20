@@ -10,7 +10,7 @@ module  jie #(
     output logic regwrite,
     output logic [2:0] aluctrl,
     output logic alusrc,
-    output logic pcsrc
+    output logic pcsrc,
 );
     logic  immsrc;  // interconnect wire
 

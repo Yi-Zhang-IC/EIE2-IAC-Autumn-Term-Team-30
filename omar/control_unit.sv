@@ -1,22 +1,22 @@
-module controlunit(
-    input logic [31:0] instruction,
+module control_unit(
+    input logic [31:0] instr,
     input logic eq,
     output logic regwrite,
     output logic [2:0] aluctrl,
     output logic alusrc,
     output logic pcsrc,
-    output logic [2:0] immsrc
+    output logic immsrc
 );
     logic [6:0] opcode;
-    assign opcode = instruction[6:0];
+    assign opcode = instr[6:0];
 
     always_comb begin
         case (opcode)
             7'd19: begin
-                aluctrl = instruction[14:12];
+                aluctrl = instr[14:12];
                 alusrc = 1'b1;
                 regwrite = 1'b1;
-                immsrc = 3'b000;
+                immsrc = 1'b0;
                 pcsrc = 1'b0;
             end
             7'd99:begin
@@ -24,7 +24,7 @@ module controlunit(
                     aluctrl = 3'b111;
                     alusrc = 1'b0;
                     regwrite = 1'b0;
-                    immsrc = 3'b011;
+                    immsrc = 1'b1;
                     pcsrc = 1'b1;
                 end
                 else begin
@@ -35,7 +35,7 @@ module controlunit(
                 aluctrl = 3'b0;
                 alusrc = 1'b0;
                 regwrite = 1'b0;
-                immsrc = 3'b0;
+                immsrc = 1'b0;
                 pcsrc = 1'b1;
             end
         endcase

@@ -22,16 +22,6 @@ module cpu #(
 
 assign rd_add = interm_ins[19:15];
 
-controlunit ctrlunit(
-    .instruction(interm_ins), //in
-    .eq(interm_eq), //in
-    .regwrite(write_en), //out
-    .aluctrl(interm_aluctrl), //out
-    .alusrc(interm_alusrc), //out
-    .pcsrc(interm_pcsrc), //out
-    .immsrc(interm_immsrc) //out
-);
-
 jie mem_ctrl_sgnext(
     .eq(interm_eq),
     .pc(prog_addr),
@@ -39,8 +29,7 @@ jie mem_ctrl_sgnext(
     .immop(interm_immop),
     .regwrite(write_en),
     .aluctrl(interm_aluctrl),
-    .alusrc(interm_alusrc),
-    .pcsrc(interm_pcsrc)
+    .alusrc(interm_alusrc)
 );
 
 yi pc_unit(
@@ -53,16 +42,16 @@ yi pc_unit(
 
 RF RF(
     .clk(clk),
-    .rst(rst),
     .ad1(interm_ins[19:15]),
     .ad2(interm_ins[24:20]),
     .ad3(interm_ins[11:7]),
-    .regwrite(rf_din),
-    .wd3(write_en),
+    .regwrite(write_en),
+    .wd3(rf_din),
     .a0(a0_output),
     .regop1(rf_dout1),
     .regop2(rf_dout2)
 );
+
 
 ALU ALU(
     .aluop1(rf_dout1),
@@ -73,6 +62,7 @@ ALU ALU(
     .aluout(rf_din),
     .eq(interm_eq)
 );
+
 
 
 endmodule

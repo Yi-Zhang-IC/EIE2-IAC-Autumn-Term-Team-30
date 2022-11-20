@@ -1,12 +1,13 @@
-module sign_extend #(
+module sign_extend (
     input logic [31:0]   instr,
     input logic          immsrc,
-    output logic [31:0]  immop        
+    output logic [31:0]  immop       
 );
 
-always_comb
+always_comb begin
     if (immsrc == 0)
-       immop[31:0] = {20'b0, instr[31:20]};
+       immop = {{5'd20{instr[31]}}, instr[31:20]};
     if (immsrc == 1)
-       immop[31:0] = {19'b0, instr{11:8}, instr{30:25}, instr[7], instr[12]};
+       immop = {{5'd20{instr[31]}}, instr[7], instr[30:25], instr[11:8]};
+end
 endmodule
