@@ -30,11 +30,11 @@ for(int i = 0; i < 300; i++){
         top->rst = 0;
 
         top->regwrite = (i == 5);
-        top->ad3 = 15;
+        top->ad3 = 10;
         top->wd3 = 5;
     
         if (i == 10){
-            top->ad2 == 15 // regop2 should equal a0 on gtkwave
+            top->ad2 == 10; // regop2 should equal a0 on gtkwave
         }
         
     if(Verilated::gotFinish())  exit(0);

@@ -18,6 +18,6 @@ always_ff @(posedge clk)
 
 assign regop1 = rf[ad1];
 assign regop2 = rf[ad2];
-assign a0 = rf[15];
+assign a0 = rf[10];
 
 endmodule
