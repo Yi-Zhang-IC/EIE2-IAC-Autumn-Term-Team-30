@@ -18,7 +18,7 @@ always_comb begin
 end
 
 always_ff @(posedge clk) begin
-    if(rst) pc <= 0;
+    if(rst) pc <= {WIDTH{1'b0}};
     else pc <= next_pc;
     
 end
