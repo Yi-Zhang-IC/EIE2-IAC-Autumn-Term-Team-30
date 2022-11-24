@@ -14,6 +14,12 @@ Vcpu::Vcpu(VerilatedContext* _vcontextp__, const char* _vcname__)
     , clk{vlSymsp->TOP.clk}
     , rst{vlSymsp->TOP.rst}
     , rd_add{vlSymsp->TOP.rd_add}
+    , interm_aluctrl{vlSymsp->TOP.interm_aluctrl}
+    , interm_immsrc{vlSymsp->TOP.interm_immsrc}
+    , interm_alusrc{vlSymsp->TOP.interm_alusrc}
+    , interm_eq{vlSymsp->TOP.interm_eq}
+    , interm_pcsrc{vlSymsp->TOP.interm_pcsrc}
+    , write_en{vlSymsp->TOP.write_en}
     , a0_output{vlSymsp->TOP.a0_output}
     , rf_dout1{vlSymsp->TOP.rf_dout1}
     , rf_dout2{vlSymsp->TOP.rf_dout2}
@@ -21,6 +27,7 @@ Vcpu::Vcpu(VerilatedContext* _vcontextp__, const char* _vcname__)
     , prog_addr{vlSymsp->TOP.prog_addr}
     , interm_ins{vlSymsp->TOP.interm_ins}
     , aluop2_test{vlSymsp->TOP.aluop2_test}
+    , rf_din{vlSymsp->TOP.rf_din}
     , rootp{&(vlSymsp->TOP)}
 {
     // Register model with the context

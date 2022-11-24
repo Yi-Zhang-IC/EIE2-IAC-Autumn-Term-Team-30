@@ -13,7 +13,7 @@ module control_unit(
     always_comb begin
         case (opcode)
             7'd19: begin
-                aluctrl = instr[14:12];
+                aluctrl = 3'b000;
                 alusrc = 1'b1;
                 regwrite = 1'b1;
                 immsrc = 1'b0;

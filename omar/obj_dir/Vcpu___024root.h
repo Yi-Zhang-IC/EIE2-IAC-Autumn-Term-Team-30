@@ -16,13 +16,15 @@ class Vcpu___024root final : public VerilatedModule {
     VL_IN8(clk,0,0);
     VL_IN8(rst,0,0);
     VL_OUT8(rd_add,4,0);
-    CData/*2:0*/ cpu__DOT__interm_aluctrl;
-    CData/*2:0*/ cpu__DOT__interm_immsrc;
-    CData/*0:0*/ cpu__DOT__interm_alusrc;
-    CData/*0:0*/ cpu__DOT__interm_eq;
-    CData/*0:0*/ cpu__DOT__write_en;
+    VL_OUT8(interm_aluctrl,2,0);
+    VL_OUT8(interm_immsrc,2,0);
+    VL_OUT8(interm_alusrc,0,0);
+    VL_OUT8(interm_eq,0,0);
+    VL_OUT8(interm_pcsrc,0,0);
+    VL_OUT8(write_en,0,0);
+    CData/*0:0*/ cpu__DOT__mem_ctrl_sgnext__DOT__immsrc;
+    CData/*0:0*/ cpu__DOT__RF__DOT__rst;
     CData/*0:0*/ __Vclklast__TOP__clk;
-    SData/*11:0*/ cpu__DOT__sgnextend__DOT__uimm;
     VL_OUT(a0_output,31,0);
     VL_OUT(rf_dout1,31,0);
     VL_OUT(rf_dout2,31,0);
@@ -30,13 +32,14 @@ class Vcpu___024root final : public VerilatedModule {
     VL_OUT(prog_addr,31,0);
     VL_OUT(interm_ins,31,0);
     VL_OUT(aluop2_test,31,0);
-    IData/*31:0*/ cpu__DOT__programcounter__DOT__next_pc;
-    IData/*31:0*/ cpu__DOT__programcounter__DOT__branch_pc;
-    IData/*31:0*/ cpu__DOT__registerfile__DOT__unnamedblk1__DOT__i;
-    IData/*31:0*/ __Vchglast__TOP__aluop2_test;
-    VlUnpacked<CData/*7:0*/, 1048576> cpu__DOT__programmem__DOT__rom_array;
-    VlUnpacked<IData/*31:0*/, 32> cpu__DOT__registerfile__DOT__rf_array;
-    VlUnpacked<CData/*0:0*/, 3> __Vm_traceActivity;
+    VL_OUT(rf_din,31,0);
+    IData/*31:0*/ cpu__DOT__pc_unit__DOT__next_pc;
+    IData/*31:0*/ cpu__DOT__RF__DOT__unnamedblk1__DOT__j;
+    IData/*31:0*/ cpu__DOT__ALU__DOT__aluop2;
+    IData/*31:0*/ __Vchglast__TOP__cpu__DOT__ALU__DOT__aluop2;
+    VlUnpacked<CData/*7:0*/, 1048576> cpu__DOT__mem_ctrl_sgnext__DOT__instr_mem__DOT__rom_array;
+    VlUnpacked<IData/*31:0*/, 32> cpu__DOT__RF__DOT__rf;
+    VlUnpacked<CData/*0:0*/, 2> __Vm_traceActivity;
 
     // INTERNAL VARIABLES
     Vcpu__Syms* const vlSymsp;

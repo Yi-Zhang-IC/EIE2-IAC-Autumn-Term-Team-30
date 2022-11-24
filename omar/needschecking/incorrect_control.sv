@@ -13,5 +13,6 @@ module control_unit (
  assign alusrc = instr[5];
  assign immsrc = instr[6];
  assign pcsrc = eq;
+ 
 endmodule
 

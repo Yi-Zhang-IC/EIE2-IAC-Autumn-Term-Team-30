@@ -16,7 +16,7 @@ verilator -Wall --cc --trace cpu.sv --exe cpu_tb.cpp
 make -j -C obj_dir/ -f Vcpu.mk Vcpu
 
 # run executable simulation file
-echo "\nRunning simulation"
+echo "Running simulation"
 obj_dir/Vcpu
-echo "\nSimulation completed"
+echo "Simulation completed"
 
