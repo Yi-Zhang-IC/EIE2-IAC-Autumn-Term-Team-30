@@ -5,7 +5,7 @@
 #include <iomanip>
 
 // #include "vbuddy.cpp"     // include vbuddy code
-#define MAX_SIM_CYC 100
+#define MAX_SIM_CYC 200
 
 int main(int argc, char **argv, char **env) {
   int simcyc;     // simulation clock count
@@ -58,23 +58,21 @@ int main(int argc, char **argv, char **env) {
     
     // //checks instruction word, requires vbdsetmode(0)
     
-    // if (vbdFlag()){
-      std::stringstream stream;
-      stream << std::hex << cpu->rf_dout1;
-      std::string result( stream.str());
-      // std::cout << result << std::endl;
+    std::stringstream stream;
+    stream << std::hex << cpu->rf_dout1;
+    std::string result( stream.str());
+    // std::cout << result << std::endl;
 
-      std::stringstream st;
-      st << std::hex << cpu->aluop2_test;
-      std::string res = st.str();
+    // std::stringstream st;
+    // // st << std::hex << cpu->aluop2_test;
+    // std::string res = st.str();
 
-      std::stringstream s;
-      s << std::hex << cpu->interm_ins;
-      std::string r = s.str();
+    std::stringstream s;
+    s << std::hex << cpu->interm_ins;
+    std::string r = s.str();
 
-      std::cout << "insttr: " << r << "\t rs1: " << result <<  "\t rs/op: " << res << std::endl;
+    std::cout << "insttr: " << r << "\t rs1: " << result <<  std::endl;
 
-    // }
 
     // //tests program counter
     // vbdHex(2, (int(cpu->prog_addr) >> 4) & 0xF);
@@ -85,7 +83,7 @@ int main(int argc, char **argv, char **env) {
     if (Verilated::gotFinish())  exit(0);
 
   }
-    // vbdClose();
+
     tfp->close(); 
     exit(0);
 }

@@ -20,16 +20,11 @@ module controlunit(
                 pcsrc = 1'b0;
             end
             7'd99:begin
-                if(!eq) begin
-                    aluctrl = 3'b111;
-                    alusrc = 1'b0;
-                    regwrite = 1'b0;
-                    immsrc = 3'b011;
-                    pcsrc = 1'b1;
-                end
-                else begin
-                    pcsrc = 1'b0;
-                end
+                aluctrl = 3'b111;
+                alusrc = 1'b0;
+                regwrite = 1'b0;
+                immsrc = 3'b011;
+                pcsrc = !eq;
             end
             default: begin
                 aluctrl = 3'b0;

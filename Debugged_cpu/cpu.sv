@@ -9,9 +9,8 @@ module cpu #(
     output logic [WIDTH-1:0] interm_immop,
     output logic [4:0] rd_add,
     output logic [WIDTH-1:0] prog_addr,
-    logic [WIDTH-1:0] interm_ins,
-    logic [WIDTH-1:0] aluop2_test
-
+    logic [WIDTH-1:0] interm_ins
+    
 );
 
 logic [WIDTH-1:0] rf_din;
@@ -61,8 +60,7 @@ alu alu(
     .immop(interm_immop),
     .regop2(rf_dout2),
     .aluout(rf_din),
-    .eq(interm_eq),
-    .aluop2(aluop2_test)
+    .eq(interm_eq)
 );
 
 rf registerfile(

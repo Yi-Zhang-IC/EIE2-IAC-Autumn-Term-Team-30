@@ -7,13 +7,13 @@ module alu #(
     input logic [D_WIDTH-1:0] immop,
     input logic [D_WIDTH-1:0] regop2,
     output logic [D_WIDTH-1:0] aluout,
-    output logic eq,
-    output logic [D_WIDTH-1:0] aluop2
+    output logic eq
 );
-
+    
+    logic [D_WIDTH-1:0] aluop2;
     assign aluop2 = alusrc ? immop : regop2;
-
     always_comb begin
+        
         case (aluctrl)
             3'b000: aluout = aluop1 + aluop2;
             3'b001: aluout = 32'b0;
