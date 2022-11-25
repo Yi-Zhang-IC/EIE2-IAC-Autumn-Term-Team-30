@@ -5,16 +5,17 @@ module pcounter #(
     input  logic clk,
     input  logic rst,
     input  logic pcsrc,
-    input  logic [WIDTH-1:0] immop,
+    input  logic [WIDTH-1:0] immext,
     output logic [WIDTH-1:0] pc
 );
 
     logic [WIDTH-1:0] next_pc;
     logic [WIDTH-1:0] branch_pc;
+    logic [WIDTH-1:0] target_pc;
 
 always_comb begin
-    branch_pc = pc + immop;
-    next_pc = pcsrc ? branch_pc : pc + 4;
+    target_pc = pc + immext;
+    next_pc = pcsrc ? target_pc : pc + 4;
 end
 
 always_ff @(posedge clk) begin
